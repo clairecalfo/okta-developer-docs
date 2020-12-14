@@ -220,6 +220,12 @@ module.exports = {
         { text: 'Okta.com', target: '_blank', link: 'https://www.okta.com/' },
         { text: 'Admin Console', target: '_blank', link: 'https://login.okta.com/' },
       ],
+      primary_doc_nav: [
+        { text: 'Guides', link: '/docs/guides/' },
+        { text: 'Concepts', link: '/docs/concepts/' },
+        { text: 'Reference', link: '/docs/reference/' },
+        { text: 'Languages & SDKs', link: '/code/' }
+      ],
 
       footer_nav: {
         social: {

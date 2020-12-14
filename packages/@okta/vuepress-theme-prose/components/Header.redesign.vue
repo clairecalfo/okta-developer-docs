@@ -3,7 +3,7 @@
     <a href="https://developer.okta.com/" class="header--logo">
       <img src="/img/icons/okta-developer.svg" />
     </a>
-    <div :class="{ 'input--slideout': true, opened: searchOpened }">
+    <div :class="{ 'search--slideout': true, opened: searchOpened }">
       <div class="input--wrapper">
         <img class="input--icon" src="/img/icons/search.svg" />
         <input
@@ -13,25 +13,34 @@
         />
       </div>
     </div>
-    <div class="header--links">
-      <MenuItems
-        :items="$themeConfig.redesign.primary_left_nav"
-        :itemCss="'link link--small link--semi-bold'"
-        :subItemCss="'link link--small link--semi-bold link--black'"
-      />
-      <MenuItems
-        :items="$themeConfig.redesign.primary_right_nav"
-        :itemCss="'link link--small link--semi-bold'"
-        :subItemCss="'link link--small link--semi-bold link--black'"
-      />
-    </div>
-    <a class="sign-up--button" href="/signup/">Sign Up</a>
-    <div class="mobile--toggles">
-      <div class="mobile--toggle" @click="searchOpened = !searchOpened">
-        <img src="/img/icons/icon--search-white.svg" />
+    <div :class="{ 'menu--slideout': true, opened: menuOpened }">
+      <div class="header--links">
+        <MenuItems
+          :items="$themeConfig.redesign.primary_left_nav"
+          :itemCss="'link link--small link--semi-bold'"
+          :subItemCss="'link link--small link--semi-bold link--black'"
+        />
+        <MenuItems
+          :items="$themeConfig.redesign.primary_right_nav"
+          :itemCss="'link link--small link--semi-bold'"
+          :subItemCss="'link link--small link--semi-bold link--black'"
+        />
+        <MenuItems
+          :items="$themeConfig.redesign.primary_doc_nav"
+          :itemCss="'link link--small link--semi-bold'"
+          :subItemCss="'link link--small link--semi-bold link--black'"
+        />
       </div>
-      <div class="mobile--toggle" @click="menuOpened = !menuOpened">
-        <img src="/img/icons/icon--menu.svg" />
+      <a class="sign-up--button" href="/signup/">Sign Up</a>
+    </div>
+    <div class="mobile--toggles">
+      <div class="mobile--toggle" @click="toggleSearch()">
+        <img v-if="searchOpened" src="/img/icons/icon--search-cherry.svg" />
+        <img v-else src="/img/icons/icon--search-white.svg" />
+      </div>
+      <div class="mobile--toggle" @click="toggleMenu()">
+        <img v-if="menuOpened" src="/img/icons/icon--menu-cherry.svg" />
+        <img v-else src="/img/icons/icon--menu-white.svg" />
       </div>
     </div>
   </header>
