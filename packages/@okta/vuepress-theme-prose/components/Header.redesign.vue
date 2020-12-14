@@ -3,7 +3,16 @@
     <a href="https://developer.okta.com/" class="header--logo">
       <img src="/img/icons/okta-developer.svg" />
     </a>
-    <input type="text" placeholder="Search Developer" class="temp-search" />
+    <div :class="{ 'input--slideout': true, opened: searchOpened }">
+      <div class="input--wrapper">
+        <img class="input--icon" src="/img/icons/search.svg" />
+        <input
+          class="input--field"
+          type="text"
+          placeholder="Search Developer"
+        />
+      </div>
+    </div>
     <div class="header--links">
       <MenuItems
         :items="$themeConfig.redesign.primary_left_nav"
@@ -17,6 +26,14 @@
       />
     </div>
     <a class="sign-up--button" href="/signup/">Sign Up</a>
+    <div class="mobile--toggles">
+      <div class="mobile--toggle" @click="searchOpened = !searchOpened">
+        <img src="/img/icons/icon--search-white.svg" />
+      </div>
+      <div class="mobile--toggle" @click="menuOpened = !menuOpened">
+        <img src="/img/icons/icon--menu.svg" />
+      </div>
+    </div>
   </header>
 </template>
 
@@ -25,6 +42,31 @@ export default {
   components: {
     MenuItems: () => import("../components/MenuItems.vue"),
     MenuItem: () => import("../components/MenuItem.vue")
+  },
+  data() {
+    return {
+      searchOpened: false,
+      menuOpened: false
+    };
+  },
+  mounted() {
+    window.addEventListener("resize", this.handleResize);
+  },
+  methods: {
+    toggleSearch: function() {
+      this.searchOpened = !this.searchOpened;
+      this.menuOpened = false;
+    },
+    toggleMenu: function() {
+      this.menuOpened = !this.menuOpened;
+      this.searchOpened = false;
+    },
+    handleResize: function() {
+      if (window.innerWidth >= 768) {
+        this.searchOpened = false;
+        this.menuOpened = false;
+      }
+    }
   }
 };
 </script>
